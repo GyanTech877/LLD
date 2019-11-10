@@ -7,25 +7,25 @@ import java.util.Map;
 // Get(key) O(1)
 // Put(key,value) O(1)
 
-class DLNode {
-	int key;
-	int value;
-	DLNode prev;
-	DLNode next;
+class DLNode<K,V> {
+	K key;
+	V value;
+	DLNode<K,V> prev;
+	DLNode<K,V> next;
 
-	public DLNode(int key, int value) {
+	public DLNode(K key, V value) {
 		this.key = key;
 		this.value = value;
 	}
 }
 
-public class LRU {
+public class LRU<K,V> {
 
-	private DLNode head;
-	private DLNode tail;
+	private DLNode<K,V> head;
+	private DLNode<K,V> tail;
 	private int capacity;
 	private int elements;
-	private Map<Integer, DLNode> cache;
+	private Map<K, DLNode<K,V>> cache;
 
 	public LRU(int capacity) {
 		this.capacity = capacity;
@@ -33,24 +33,24 @@ public class LRU {
 		cache = new HashMap<>();
 	}
 
-	public int get(int key) {
+	public V get(K key) {
 		if (!cache.containsKey(key))
-			return -1;
-		DLNode currNode = cache.get(key);
-		int retValue = currNode.value;
+			return null;
+		DLNode<K,V> currNode = cache.get(key);
+		V retValue = currNode.value;
 		removeNode(currNode);
 		addNodeToHead(currNode);
 		return retValue;
 	}
 
-	public void put(int key, int val) {
+	public void put(K key, V val) {
 		if (cache.containsKey(key)) {
-			DLNode currNode = cache.get(key);
+			DLNode<K,V> currNode = cache.get(key);
 			currNode.value = val;
 			removeNode(currNode);
 			addNodeToHead(currNode);
 		} else {
-			DLNode newNode = new DLNode(key, val);
+			DLNode<K,V> newNode = new DLNode<>(key, val);
 			addNodeToHead(newNode);
 			elements++;
 			cache.put(key, newNode);
@@ -62,7 +62,7 @@ public class LRU {
 		}
 	}
 
-	private void removeNode(DLNode currNode) {
+	private void removeNode(DLNode<K,V> currNode) {
 		if (currNode.prev == null) {
 			tail = currNode.next;
 			currNode.next = null;
@@ -80,7 +80,7 @@ public class LRU {
 
 	}
 
-	private void addNodeToHead(DLNode currNode) {
+	private void addNodeToHead(DLNode<K,V> currNode) {
 		if (head == null)
 			head = tail = currNode;
 		else {

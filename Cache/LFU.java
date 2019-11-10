@@ -8,10 +8,10 @@ import java.util.Map;
 //Get(key) O(1)
 //Put(key,value) O(1)
 
-public class LFU {
-	private Map<Integer, Integer> keyValueMap;
-	private Map<Integer, Integer> freqMap;
-	private Map<Integer, LinkedHashSet<Integer>> lists;
+public class LFU<K,V> {
+	private Map<K, V> keyValueMap;
+	private Map<K, Integer> freqMap;
+	private Map<Integer, LinkedHashSet<K>> lists;
 	private int capacity;
 	private int min;
 
@@ -24,9 +24,9 @@ public class LFU {
 		lists.put(1, new LinkedHashSet<>());
 	}
 
-	public int get(int key) {
+	public V get(K key) {
 		if (!keyValueMap.containsKey(key))
-			return -1;
+			return null;
 
 		int count = freqMap.get(key);
 
@@ -47,7 +47,7 @@ public class LFU {
 		return keyValueMap.get(key);
 	}
 
-	public void put(int key, int val) {
+	public void put(K key, V val) {
 		if (capacity <= 0)
 			return;
 
@@ -60,7 +60,7 @@ public class LFU {
 		else {
 			// addition of new key exceeds cache capacity
 			if (keyValueMap.size() >= capacity) {
-				int toBeRemoved = lists.get(min).iterator().next();
+				K toBeRemoved = lists.get(min).iterator().next();
 				lists.get(min).remove(toBeRemoved);
 				freqMap.remove(toBeRemoved);
 				keyValueMap.remove(toBeRemoved);
