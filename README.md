@@ -1,4 +1,4 @@
-This contains Java implementation of low level design problems.
+This repo contains Java implementation of low level design problems.
 It contain two files with name Clean Code architecture and Solid Principles which will be followed in designing below topics. 
 
 1) Different type of Caches,
