@@ -10,5 +10,4 @@ It contain two files with name Clean Code architecture and Solid Principles whic
 7) Implementing security in web application,
 8) Snake and Ladder,
 9) Text Editor,
-10) Vending Machine,
-11) 
+10) Vending Machine
