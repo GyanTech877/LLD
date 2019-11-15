@@ -1,57 +1,22 @@
 package LLD.SnakeAndLadder.entities;
 
-import java.util.List;
+import java.util.UUID;
 
 public class Player {
-	private User user;
-	private int rank;
-	private List<Game> gameHistory;
-	int position;
-	
-	public Player(User user) {
-		super();
-		this.user = user;
-		this.position=0;
+	private String name;
+	private String id;
+
+	public Player(String name) {
+		this.name = name;
+		this.id = UUID.randomUUID().toString();
 	}
 
-	public int getRank() {
-		return rank;
+	public String getName() {
+		return name;
 	}
 
-	public void setRank(int rank) {
-		this.rank = rank;
+	public String getId() {
+		return id;
 	}
-
-	public List<Game> getGameHistory() {
-		return gameHistory;
-	}
-
-	public void setGameHistory(List<Game> gameHistory) {
-		this.gameHistory = gameHistory;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public int getPosition() {
-		return position;
-	}
-
-	public void setPosition(int position) {
-		this.position = position;
-	}
-
-	@Override
-	public String toString() {
-		return "Player [user=" + user + ", rank=" + rank + ", gameHistory=" + gameHistory + ", position=" + position
-				+ "]";
-	}
-
-	
 
 }

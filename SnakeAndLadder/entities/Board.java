@@ -1,42 +1,50 @@
 package LLD.SnakeAndLadder.entities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Board {
-	private int boardId;
-	private final static int WIN_POINT = 100;
-	private Map<Integer,Integer> snakes;
-	private Map<Integer,Integer> ladders;
-	private static final AtomicInteger count = new AtomicInteger(0);
-	
-	public Board() {
-		this.boardId=count.getAndIncrement();
-		this.snakes=new HashMap<>();
-		this.ladders=new HashMap<>();
-	}
-	public int getBoardId() {
-		return boardId;
+	private int size;
+	private List<Snake> snakes;
+	private List<Ladder> ladders;
+	private Map<String, Integer> playerPieces;
+
+	public Board(int size) {
+		super();
+		this.size = size;
+		this.snakes = new ArrayList<>();
+		this.ladders = new ArrayList<>();
+		this.playerPieces = new HashMap<>();
 	}
 
-	public void setBoardId(int boardId) {
-		this.boardId = boardId;
+	public int getSize() {
+		return size;
 	}
-	
-	public Map<Integer, Integer> getSnakes() {
+
+	public List<Snake> getSnakes() {
 		return snakes;
 	}
-	
-	public Map<Integer, Integer> getLadders() {
+
+	public void setSnakes(List<Snake> snakes) {
+		this.snakes = snakes;
+	}
+
+	public List<Ladder> getLadders() {
 		return ladders;
 	}
-	
-	public static AtomicInteger getCount() {
-		return count;
+
+	public void setLadders(List<Ladder> ladders) {
+		this.ladders = ladders;
 	}
-	public static int getWinPoint() {
-		return WIN_POINT;
+
+	public Map<String, Integer> getPlayerPieces() {
+		return playerPieces;
+	}
+
+	public void setPlayerPieces(Map<String, Integer> playerPieces) {
+		this.playerPieces = playerPieces;
 	}
 
 }
